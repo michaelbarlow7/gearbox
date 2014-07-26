@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="green_ball">#8EC85A</color>
+    <color name="grey_ball">#C2C2C3</color>
+    <color name="yellow_ball">#FED54E</color>
+
+</resources>

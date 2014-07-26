@@ -21,28 +21,28 @@ public class GearApplication extends Application {
         super.onCreate();
 
         gearLocationList = new ArrayList<GearLocation>();
-        addLocation("Hyde Park", -33.87500f, 151.2110000f, 1, 2, 0, 0, 0, 0);
+        addLocation("Hyde Park", -33.87500f, 151.2110000f, 1, 2, 0, -1, 0, 0);
         addLocation("Not Hyde Park", -33.86500f, 151.2117000f, 1, 0, 2, 0, 1, 5);
     }
 
     private void addLocation(String locationName, float latitude, float longtitude, int volleyballs, int tennisballs, int soccerBalls, int basketballs, int beachballs, int cricketballs) {
         List<Gear> gearList = new ArrayList<Gear>();
-        if (volleyballs > 0) {
+        if (volleyballs > -1) {
             gearList.add(new Gear(GearType.VOLLEYBALL, volleyballs));
         }
-        if (tennisballs > 0) {
+        if (tennisballs > -1) {
             gearList.add(new Gear(GearType.TENNIS, tennisballs));
         }
-        if (soccerBalls > 0) {
+        if (soccerBalls > -1) {
             gearList.add(new Gear(GearType.SOCCER, soccerBalls));
         }
-        if (basketballs > 0) {
+        if (basketballs > -1) {
             gearList.add(new Gear(GearType.BASKETBALL, basketballs));
         }
-        if (beachballs > 0) {
+        if (beachballs > -1) {
             gearList.add(new Gear(GearType.BEACHBALL, beachballs));
         }
-        if (cricketballs > 0) {
+        if (cricketballs > -1) {
             gearList.add(new Gear(GearType.CRICKET, cricketballs));
         }
 

@@ -1,13 +1,12 @@
 package com.gearboxer.gearbox;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gearboxer.gearbox.model.Gear;
 import com.gearboxer.gearbox.model.GearLocation;
@@ -60,32 +59,122 @@ public class MapActivity extends Activity {
                 List<Gear> gears = gearLocation.getGearList();
                 for (Gear gear : gears) {
                     if (gear.getGearType() == GearType.VOLLEYBALL) {
-                        View icon = view.findViewById(R.id.volleyball);
+                        ImageView icon = (ImageView) view.findViewById(R.id.volleyball);
                         icon.setVisibility(View.VISIBLE);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgvolley;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapyvolley;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapnvolley;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         continue;
                     }
                     if (gear.getGearType() == GearType.TENNIS) {
-                        View icon = view.findViewById(R.id.tennis);
+                        ImageView icon = (ImageView) view.findViewById(R.id.tennis);
                         icon.setVisibility(View.VISIBLE);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgtennis;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapytennis;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapntennis;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         continue;
                     }
                     if (gear.getGearType() == GearType.SOCCER) {
-                        View icon = view.findViewById(R.id.soccer);
+                        ImageView icon = (ImageView) view.findViewById(R.id.soccer);
                         icon.setVisibility(View.VISIBLE);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgsoccer;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapysoccer;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapnsoccer;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         continue;
                     }
                     if (gear.getGearType() == GearType.BASKETBALL) {
-                        View icon = view.findViewById(R.id.basketball);
+                        ImageView icon = (ImageView) view.findViewById(R.id.basketball);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgbasket;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapybasket;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapnbasket;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
                     if (gear.getGearType() == GearType.BEACHBALL) {
-                        View icon = view.findViewById(R.id.beachball);
+                        ImageView icon = (ImageView) view.findViewById(R.id.beachball);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgbeach;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapybeach;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapnbeach;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
                     if (gear.getGearType() == GearType.CRICKET) {
-                        View icon = view.findViewById(R.id.cricket);
+                        ImageView icon = (ImageView) view.findViewById(R.id.cricket);
+                        int resourceId;
+                        switch(gear.getQuantity()){
+                            case 0: {
+                                resourceId = R.drawable.mapgcricket;
+                                break;
+                            }
+                            case 1: {
+                                resourceId = R.drawable.mapycricket;
+                                break;
+                            }
+                            default: {
+                                resourceId = R.drawable.mapncricket;
+                            }
+                        }
+                        icon.setImageResource(resourceId);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
@@ -122,7 +211,8 @@ public class MapActivity extends Activity {
         for (GearLocation gearLocation : locationList) {
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(gearLocation.getLatitude(), gearLocation.getLongitude()))
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.gearbox_marker))
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                     .snippet(String.valueOf(i))
                     .title(gearLocation.getName()));
             i++;
