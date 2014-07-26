@@ -10,5 +10,6 @@
     <string name="server">192.168.1.xxx</string>
     <string name="open_endpoint">/open</string>
     <string name="close_endpoint">/close</string>
+    <string name="title_activity_thank_you">ThankYouActivity</string>
 
 </resources>

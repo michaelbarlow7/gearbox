@@ -58,33 +58,33 @@ public class MapActivity extends Activity {
                 text.setText(gearLocation.getName());
 
                 List<Gear> gears = gearLocation.getGearList();
-                for (Gear gear : gears){
-                    if (gear.getGearType() == GearType.VOLLEYBALL){
+                for (Gear gear : gears) {
+                    if (gear.getGearType() == GearType.VOLLEYBALL) {
                         View icon = view.findViewById(R.id.volleyball);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
-                    if (gear.getGearType() == GearType.TENNIS){
+                    if (gear.getGearType() == GearType.TENNIS) {
                         View icon = view.findViewById(R.id.tennis);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
-                    if (gear.getGearType() == GearType.SOCCER){
+                    if (gear.getGearType() == GearType.SOCCER) {
                         View icon = view.findViewById(R.id.soccer);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
-                    if (gear.getGearType() == GearType.BASKETBALL){
+                    if (gear.getGearType() == GearType.BASKETBALL) {
                         View icon = view.findViewById(R.id.basketball);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
-                    if (gear.getGearType() == GearType.BEACHBALL){
+                    if (gear.getGearType() == GearType.BEACHBALL) {
                         View icon = view.findViewById(R.id.beachball);
                         icon.setVisibility(View.VISIBLE);
                         continue;
                     }
-                    if (gear.getGearType() == GearType.CRICKET){
+                    if (gear.getGearType() == GearType.CRICKET) {
                         View icon = view.findViewById(R.id.cricket);
                         icon.setVisibility(View.VISIBLE);
                         continue;
@@ -144,8 +144,9 @@ public class MapActivity extends Activity {
 
     private class GearLocationOnInfoWindowClickListener implements GoogleMap.OnInfoWindowClickListener {
 
-        public GearLocationOnInfoWindowClickListener(){
+        public GearLocationOnInfoWindowClickListener() {
         }
+
         @Override
         public void onInfoWindowClick(Marker marker) {
             int gearLocationPosition = Integer.parseInt(marker.getSnippet());

@@ -2,7 +2,9 @@ package com.gearboxer.gearbox;
 
 import android.app.Activity;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,6 +32,7 @@ public class CurrentlyPlaying extends Activity {
     private TextView timerText;
     private int time = 58;
     private volatile boolean keepTicking = true;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,12 +108,18 @@ public class CurrentlyPlaying extends Activity {
     }
 
     public void onLockClick(View v){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Locking box");
+        progressDialog.show();
         Ion.with(v.getContext(), getString(R.string.server) + getString(R.string.close_endpoint))
                 .asString()
                 .setCallback(new FutureCallback<String>() {
                     @Override
                     public void onCompleted(Exception e, String result) {
                         Log.d(TAG, "Latch closed, result: " + result);
+                        Intent intent = new Intent(CurrentlyPlaying.this, ThankYouActivity.class);
+                        startActivity(intent);
+                        progressDialog.dismiss();
                     }
                 });
     }
