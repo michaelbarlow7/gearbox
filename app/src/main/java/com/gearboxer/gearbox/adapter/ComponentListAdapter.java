@@ -55,11 +55,9 @@ public class ComponentListAdapter extends BaseAdapter{
         }
         Component component = components[position];
 
-        ImageView icon = (ImageView) convertView.findViewById(R.id.componentIcon);
-        //TODO: set icon
-
         TextView componentName = (TextView) convertView.findViewById(R.id.componentName);
         componentName.setText(component.getContents());
+        componentName.setCompoundDrawablesWithIntrinsicBounds(component.getIconResource(), 0, 0, 0);
 
         return convertView;
     }
