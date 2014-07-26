@@ -22,15 +22,17 @@
         android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         <activity
             android:name=".SplashActivity">
-        </activity>
-        <activity
-            android:theme="@style/AppTheme"
-            android:name=".MapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:theme="@style/AppTheme"
+            android:name=".MapActivity">
+
+
         </activity>
 
         <meta-data

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer name="fade_animation_duration">4000</integer>
+    <integer name="rotate_animation_duration">9000</integer>
+
+</resources>
