@@ -1,7 +1,12 @@
 package com.gearboxer.gearbox;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +19,7 @@ import com.gearboxer.gearbox.model.GearLocation;
 public class CurrentlyPlaying extends Activity {
     public static final String LOCATION_EXTRA = "LOCATION_EXTRA";
     public static final String GEAR_EXTRA = "GEAR_EXTRA";
+    public static final int SECONDS_TIL_NOTIFY = 10;
 
     private GearLocation gearLocation;
     private Gear gear;
@@ -55,6 +61,7 @@ public class CurrentlyPlaying extends Activity {
         });
         thread.start();
     }
+    private int tickedSeconds = 0;
 
     public class TimeRunnable implements Runnable{
 
@@ -65,7 +72,26 @@ public class CurrentlyPlaying extends Activity {
             if (time < 0){
                 time = 59;
             }
+            tickedSeconds++;
+            if (tickedSeconds == SECONDS_TIL_NOTIFY){
+                showNotification();
+            }
         }
+    }
+
+    private void showNotification() {
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        .setContentTitle("You have 10 minutes to return your gear!")
+                        .setTicker("You have 10 minutes to return your gear!")
+                        .setContentText("Please return to the gearbox to return your gear")
+                        .setSmallIcon(android.R.drawable.ic_delete)
+                        .setSound(soundUri)
+                        .setAutoCancel(true)
+                        .setOngoing(false);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
     }
 
     @Override

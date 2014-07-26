@@ -34,7 +34,8 @@ public class GearListActivity extends Activity {
 
             // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
             // or live (ENVIRONMENT_PRODUCTION)
-            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .environment(PayPalConfiguration.ENVIRONMENT_NO_NETWORK)
+//            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
 
             .clientId(PAYPAL_CLIENT_ID);
     private Gear gear;
