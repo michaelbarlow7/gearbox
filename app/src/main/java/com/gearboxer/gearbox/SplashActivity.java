@@ -3,6 +3,7 @@ package com.gearboxer.gearbox;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,9 +11,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+
+import java.net.URL;
+
 
 public class SplashActivity extends Activity {
 
+    private static final String TAG = SplashActivity.class.getName();
     private ImageView splashBall0;
     private ImageView splashBall1;
     private Animation fadeInAnimation;
@@ -63,6 +70,14 @@ public class SplashActivity extends Activity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
         finish();
+        Ion.with(this, getString(R.string.server) + getString(R.string.open_endpoint))
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        Log.d(TAG, "Latch opened, result: " + result);
+                    }
+                });
     }
 
     private class MyAnimationListener implements Animation.AnimationListener {
