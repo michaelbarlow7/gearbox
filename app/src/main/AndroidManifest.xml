@@ -29,7 +29,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:theme="@style/AppTheme"
             android:name=".MapActivity">
 
 

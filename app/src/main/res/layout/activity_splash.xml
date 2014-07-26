@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textColor="@android:color/white"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:gravity="center"
         android:layout_below="@id/splashGear"
         android:layout_alignParentBottom="true"

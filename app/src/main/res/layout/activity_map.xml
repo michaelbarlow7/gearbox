@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/map"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="com.google.android.gms.maps.MapFragment"
-    map:mapType="normal"
-    map:uiRotateGestures="false"
-    map:cameraTargetLat="-33.8775433"
-    map:cameraTargetLng="151.2160746"
-    map:cameraZoom="15"
-    />
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:layout_alignParentTop="true"
+        android:background="@color/gearbox_orange"
+        android:textColor="@android:color/white"
+        android:text="Where would you like to play today?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topBar"
+        android:name="com.google.android.gms.maps.MapFragment"
+        map:mapType="normal"
+        map:uiRotateGestures="false"
+        map:cameraTargetLat="-33.8775433"
+        map:cameraTargetLng="151.2160746"
+        map:cameraZoom="12" />
+</RelativeLayout>

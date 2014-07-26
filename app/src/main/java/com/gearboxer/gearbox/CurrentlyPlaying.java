@@ -44,7 +44,7 @@ public class CurrentlyPlaying extends Activity {
 
         TextView gearText = (TextView) findViewById(R.id.gearText);
         gearText.setText(gear.getGearType().getName());
-        //TODO: Set drawableLeft
+        gearText.setCompoundDrawablesWithIntrinsicBounds(gear.getGearType().getIconResource(), 0, 0, 0);
 
         TextView locationText = (TextView) findViewById(R.id.locationText);
         locationText.setText("in " + gearLocation.getName());
@@ -93,7 +93,7 @@ public class CurrentlyPlaying extends Activity {
                         .setContentTitle("You have 10 minutes to return your gear!")
                         .setTicker("You have 10 minutes to return your gear!")
                         .setContentText("Please return to the gearbox to return your gear")
-                        .setSmallIcon(android.R.drawable.ic_delete)
+                        .setSmallIcon(R.drawable.gearboxnotification)
                         .setSound(soundUri)
                         .setAutoCancel(true)
                         .setOngoing(false);
