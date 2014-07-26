@@ -3,18 +3,26 @@ package com.gearboxer.gearbox;
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.gearboxer.gearbox.model.GearLocation;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapActivity extends Activity {
     public static final String TAG = MapActivity.class.getName();
 
     private GoogleMap mMap;
     private LatLng myLocation;
+    private List<GearLocation> locationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +31,27 @@ public class MapActivity extends Activity {
 
         setUpMapIfNeeded();
 
+        locationList = ((GearApplication) getApplication()).getGearLocationList();
+        attachMarkers();
+
+        mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                int gearLocationPosition = Integer.parseInt(marker.getSnippet());
+                GearLocation gearLocation = locationList.get(gearLocationPosition);
+
+                LayoutInflater inflater = LayoutInflater.from(MapActivity.this);
+                View view = inflater.inflate(R.layout.marker_info, null);
+                TextView text = (TextView) view.findViewById(R.id.markerText);
+                text.setText(gearLocation.getName());
+                return view;
+            }
+        });
 //        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
 //
 //            @Override
@@ -43,6 +72,18 @@ public class MapActivity extends Activity {
         mMap.setMyLocationEnabled(true);
 
 
+    }
+
+    private void attachMarkers() {
+        int i = 0;
+        for (GearLocation gearLocation : locationList) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(gearLocation.getLatitude(), gearLocation.getLongitude()))
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                    .snippet(String.valueOf(i))
+                    .title(gearLocation.getName()));
+            i++;
+        }
     }
 
     private void setUpMapIfNeeded() {
