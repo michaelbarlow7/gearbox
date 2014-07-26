@@ -2,6 +2,7 @@ package com.gearboxer.gearbox;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -149,7 +150,10 @@ public class MapActivity extends Activity {
         public void onInfoWindowClick(Marker marker) {
             int gearLocationPosition = Integer.parseInt(marker.getSnippet());
             GearLocation gearLocation = locationList.get(gearLocationPosition);
-            Toast.makeText(MapActivity.this, "GO TO : " + gearLocation.getName(), Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(MapActivity.this, GearListActivity.class);
+            intent.putExtra(GearListActivity.LOCATION_EXTRA, gearLocation);
+            startActivity(intent);
         }
     }
 }

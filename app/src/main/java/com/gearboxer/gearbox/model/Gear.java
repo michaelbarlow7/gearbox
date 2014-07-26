@@ -1,9 +1,11 @@
 package com.gearboxer.gearbox.model;
 
+import java.io.Serializable;
+
 /**
  * Created by mbarlow on 26/07/2014.
  */
-public class Gear {
+public class Gear implements Serializable{
     private GearType gearType;
     private int quantity;
 

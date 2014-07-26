@@ -1,11 +1,12 @@
 package com.gearboxer.gearbox.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by mbarlow on 26/07/2014.
  */
-public class GearLocation {
+public class GearLocation implements Serializable{
     private float latitude;
     private float longitude;
     private String name;

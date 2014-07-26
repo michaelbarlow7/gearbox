@@ -21,8 +21,8 @@ public class GearApplication extends Application {
         super.onCreate();
 
         gearLocationList = new ArrayList<GearLocation>();
-//                .position(new LatLng(-33.875000, 151.2110000))
         addLocation("Hyde Park", -33.87500f, 151.2110000f, 1, 2, 0, 0, 0, 0);
+        addLocation("Not Hyde Park", -33.86500f, 151.2117000f, 1, 0, 2, 0, 1, 5);
     }
 
     private void addLocation(String locationName, float latitude, float longtitude, int volleyballs, int tennisballs, int soccerBalls, int basketballs, int beachballs, int cricketballs) {

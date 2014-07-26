@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/gearIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:src="@android:drawable/ic_menu_compass"
+        />
+    <TextView
+        android:id="@+id/quantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/gearIcon"
+        android:layout_alignBottom="@id/gearIcon"
+        android:gravity="center_vertical|right"
+        android:text="4 in box"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/gearName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/gearIcon"
+        android:layout_toLeftOf="@id/quantityText"
+        android:layout_alignTop="@id/gearIcon"
+        android:layout_alignBottom="@id/gearIcon"
+        android:gravity="center"
+        android:text="Cricket"
+        android:textSize="20sp"
+        />
+
+</RelativeLayout>
