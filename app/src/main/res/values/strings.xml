@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_gear_list">GearListActivity</string>
+    <string name="title_activity_currently_playing">CurrentlyPlaying</string>
 
 </resources>
