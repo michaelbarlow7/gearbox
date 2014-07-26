@@ -16,6 +16,8 @@ import com.gearboxer.gearbox.adapter.ComponentListAdapter;
 import com.gearboxer.gearbox.adapter.GearListAdapter;
 import com.gearboxer.gearbox.model.Gear;
 import com.gearboxer.gearbox.model.GearLocation;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -27,6 +29,7 @@ import org.json.JSONException;
 import java.math.BigDecimal;
 
 public class GearListActivity extends Activity {
+    private static final String TAG = GearListActivity.class.getName();
     public static String LOCATION_EXTRA = "LOCATION_EXTRA";
     private GearLocation gearLocation;
     private static final String PAYPAL_CLIENT_ID = "AYa-7hCXYEbJ-i3iz6wcnviNJkg0ni42YDVj5ocrV41aAh3ufYX_BlMor0TG";
@@ -111,6 +114,14 @@ public class GearListActivity extends Activity {
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+        Ion.with(this, getString(R.string.server) + getString(R.string.open_endpoint))
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        Log.d(TAG, "Latch opened, result: " + result);
+                    }
+                });
         Intent intent = new Intent(this, CurrentlyPlaying.class);
         intent.putExtra(CurrentlyPlaying.LOCATION_EXTRA, gearLocation);
         intent.putExtra(CurrentlyPlaying.GEAR_EXTRA, gear);

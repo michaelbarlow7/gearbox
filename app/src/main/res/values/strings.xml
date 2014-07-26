@@ -7,5 +7,8 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_gear_list">GearListActivity</string>
     <string name="title_activity_currently_playing">CurrentlyPlaying</string>
+    <string name="server">192.168.1.xxx</string>
+    <string name="open_endpoint">/open</string>
+    <string name="close_endpoint">/close</string>
 
 </resources>

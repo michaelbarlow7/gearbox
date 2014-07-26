@@ -7,6 +7,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,11 +16,14 @@ import android.widget.TextView;
 import com.gearboxer.gearbox.R;
 import com.gearboxer.gearbox.model.Gear;
 import com.gearboxer.gearbox.model.GearLocation;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 
 public class CurrentlyPlaying extends Activity {
     public static final String LOCATION_EXTRA = "LOCATION_EXTRA";
     public static final String GEAR_EXTRA = "GEAR_EXTRA";
     public static final int SECONDS_TIL_NOTIFY = 10;
+    private static final String TAG = CurrentlyPlaying.class.getName();
 
     private GearLocation gearLocation;
     private Gear gear;
@@ -101,6 +105,13 @@ public class CurrentlyPlaying extends Activity {
     }
 
     public void onLockClick(View v){
-        // Send lock
+        Ion.with(v.getContext(), getString(R.string.server) + getString(R.string.close_endpoint))
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        Log.d(TAG, "Latch closed, result: " + result);
+                    }
+                });
     }
 }
