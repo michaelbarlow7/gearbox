@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.gearboxer.gearbox.R;
@@ -16,6 +17,9 @@ public class CurrentlyPlaying extends Activity {
 
     private GearLocation gearLocation;
     private Gear gear;
+    private TextView timerText;
+    private int time = 58;
+    private volatile boolean keepTicking = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,46 @@ public class CurrentlyPlaying extends Activity {
 
         TextView locationText = (TextView) findViewById(R.id.locationText);
         locationText.setText("in " + gearLocation.getName());
+
+        timerText = (TextView) findViewById(R.id.timer);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(keepTicking){
+                    try {
+                        Thread.sleep(1000L);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (keepTicking){
+                        runOnUiThread(new TimeRunnable());
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 
+    public class TimeRunnable implements Runnable{
 
+        @Override
+        public void run() {
+            timerText.setText(String.format("01:59:%02d", time));
+            time--;
+            if (time < 0){
+                time = 59;
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        keepTicking = false;
+    }
+
+    public void onLockClick(View v){
+        // Send lock
+    }
 }
