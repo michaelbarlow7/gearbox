@@ -114,20 +114,21 @@ public class GearListActivity extends Activity {
 
     @Override
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
-        Ion.with(this, getString(R.string.server) + getString(R.string.open_endpoint))
-                .asString()
-                .setCallback(new FutureCallback<String>() {
-                    @Override
-                    public void onCompleted(Exception e, String result) {
-                        Log.d(TAG, "Latch opened, result: " + result);
-                    }
-                });
+//        Ion.with(this, getString(R.string.server) + getString(R.string.open_endpoint))
+//                .asString()
+//                .setCallback(new FutureCallback<String>() {
+//                    @Override
+//                    public void onCompleted(Exception e, String result) {
+//                        Log.d(TAG, "Latch opened, result: " + result);
+//                    }
+//                });
         Intent intent = new Intent(this, CurrentlyPlaying.class);
         intent.putExtra(CurrentlyPlaying.LOCATION_EXTRA, gearLocation);
         intent.putExtra(CurrentlyPlaying.GEAR_EXTRA, gear);
         startActivity(intent);
         if (resultCode == Activity.RESULT_OK) {
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+//            confirm.toJSONObject()
             if (confirm != null) {
                 try {
                     Log.i("paymentExample", confirm.toJSONObject().toString(4));

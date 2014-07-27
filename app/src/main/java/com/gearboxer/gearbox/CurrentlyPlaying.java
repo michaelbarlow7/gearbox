@@ -35,7 +35,7 @@ public class CurrentlyPlaying extends Activity {
     private volatile boolean keepTicking = true;
     private ProgressDialog progressDialog;
 
-    private boolean open = true;
+    private boolean open = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +74,8 @@ public class CurrentlyPlaying extends Activity {
                         .setCallback(new FutureCallback<String>() {
                             @Override
                             public void onCompleted(Exception e, String result) {
-                                Intent intent = new Intent(CurrentlyPlaying.this, ThankYouActivity.class);
-                                startActivity(intent);
+//                                Intent intent = new Intent(CurrentlyPlaying.this, ThankYouActivity.class);
+//                                startActivity(intent);
                                 progressDialog.dismiss();
                             }
                         });

@@ -71,14 +71,6 @@ public class SplashActivity extends Activity {
         Intent intent = new Intent(this, MapActivity.class);
         startActivity(intent);
         finish();
-        Ion.with(this, getString(R.string.server) + getString(R.string.open_endpoint))
-                .asString()
-                .setCallback(new FutureCallback<String>() {
-                    @Override
-                    public void onCompleted(Exception e, String result) {
-                        Log.d(TAG, "Latch opened, result: " + result);
-                    }
-                });
     }
 
     private class MyAnimationListener implements Animation.AnimationListener {
