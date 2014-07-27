@@ -90,4 +90,14 @@
         android:text="I'm done! Gear returned"
         android:onClick="onLockClick"
         />
+    <Button
+        android:id="@+id/reportProblemButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lockGearboxButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        style="@style/ButtonStyle"
+        android:text="Report problem"
+        />
 </RelativeLayout>
