@@ -1,11 +1,9 @@
 package com.gearboxer.gearbox;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -140,31 +138,33 @@ public class CurrentlyPlaying extends Activity {
         keepTicking = false;
     }
 
-    public void onLockClick(View v){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Lock box");
-        builder.setMessage("Please place the gear in the box.");
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                progressDialog = new ProgressDialog(CurrentlyPlaying.this);
-                progressDialog.setMessage("Locking box");
-                progressDialog.show();
-                Ion.with(CurrentlyPlaying.this, getString(R.string.server) + getString(R.string.close_endpoint))
-                        .asString()
-                        .setCallback(new FutureCallback<String>() {
-                            @Override
-                            public void onCompleted(Exception e, String result) {
-                                Log.d(TAG, "Latch closed, result: " + result);
-                                Intent intent = new Intent(CurrentlyPlaying.this, ThankYouActivity.class);
-                                startActivity(intent);
-                                progressDialog.dismiss();
-                            }
-                        });
-            }
-        });
-        builder.setNegativeButton(android.R.string.cancel, null);
-        builder.show();
+    public void onLockClick(View v) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Lock box");
+//        builder.setMessage("Please place the gear in the box.");
+//        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+
+        progressDialog = new ProgressDialog(CurrentlyPlaying.this);
+        progressDialog.setMessage("Locking box");
+        progressDialog.show();
+        Ion.with(CurrentlyPlaying.this, getString(R.string.server) + getString(R.string.close_endpoint))
+                .asString()
+                .setCallback(new FutureCallback<String>() {
+                    @Override
+                    public void onCompleted(Exception e, String result) {
+                        Log.d(TAG, "Latch closed, result: " + result);
+                        Intent intent = new Intent(CurrentlyPlaying.this, ThankYouActivity.class);
+                        startActivity(intent);
+                        progressDialog.dismiss();
+                    }
+                });
+
+//            }
+//        });
+//        builder.setNegativeButton(android.R.string.cancel, null);
+//        builder.show();
 
     }
 }
