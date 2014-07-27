@@ -45,6 +45,7 @@ public class SplashActivity extends Activity {
 
         splashBall0.startAnimation(fadeInAnimation);
         splashBall1.startAnimation(fadeOutAnimation);
+
     }
 
     public static int getBallResource(int position) {
@@ -90,7 +91,6 @@ public class SplashActivity extends Activity {
             fadeInBall++;
             fadeInBall %= 6;
             if (fadeInBall % 2 == 0) {
-                System.out.println("0");
                 // ball 0 is due to fade in
                 splashBall0.setImageResource(getBallResource(fadeInBall));
                 fadeInAnimation = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fade_in);
@@ -98,7 +98,6 @@ public class SplashActivity extends Activity {
                 splashBall0.startAnimation(fadeInAnimation);
                 splashBall1.startAnimation(fadeOutAnimation);
             } else {
-                System.out.println("1");
                 // ball 1 is due to fade in
                 splashBall1.setImageResource(getBallResource(fadeInBall));
                 fadeInAnimation = AnimationUtils.loadAnimation(SplashActivity.this, R.anim.fade_in);

@@ -11,10 +11,16 @@
         android:layout_alignParentTop="true"
         android:background="@color/gearbox_orange"
         android:textColor="@android:color/white"
-        android:text="Where would you like to play today?"
+        android:text="Where would you like to play?"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/white"
+        android:layout_below="@id/topBar"
+        />
 
     <fragment
         android:id="@+id/map"
