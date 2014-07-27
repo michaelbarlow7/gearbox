@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,19 +69,15 @@ public class GearListActivity extends Activity {
 
                 // Launch dialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(parent.getContext());
-                builder.setTitle(gear.getGearType().getName());
+//                builder.setTitle(gear.getGearType().getName());
                 View dialogView = LayoutInflater.from(parent.getContext()).inflate(R.layout.dialog_gear, null);
+                TextView titleView = (TextView) dialogView.findViewById(R.id.topBar);
+                titleView.setText(gear.getGearType().getName() + " kit");
 
-                ListView componentListView = (ListView) dialogView.findViewById(R.id.componentListView);
-                ComponentListAdapter adapter = new ComponentListAdapter(gear.getGearType().getComponents());
-                componentListView.setAdapter(adapter);
-
-                builder.setView(dialogView);
-
-                // On click goes here
-                builder.setPositiveButton("Grab gear", new DialogInterface.OnClickListener() {
+                Button grabButton = (Button) dialogView.findViewById(R.id.grabButton);
+                grabButton.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(View v) {
                         // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
                         // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and
                         // capture funds later.
@@ -95,6 +92,31 @@ public class GearListActivity extends Activity {
                         startActivityForResult(intent, 0);
                     }
                 });
+
+                ListView componentListView = (ListView) dialogView.findViewById(R.id.componentListView);
+                ComponentListAdapter adapter = new ComponentListAdapter(gear.getGearType().getComponents());
+                componentListView.setAdapter(adapter);
+
+                builder.setView(dialogView);
+
+                // On click goes here
+//                builder.setPositiveButton("Grab gear", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        // PAYMENT_INTENT_SALE will cause the payment to complete immediately.
+//                        // Change PAYMENT_INTENT_SALE to PAYMENT_INTENT_AUTHORIZE to only authorize payment and
+//                        // capture funds later.
+//
+//                        PayPalPayment payment = new PayPalPayment(new BigDecimal("2.00"), "AUD", gear.getGearType().getName(),
+//                                PayPalPayment.PAYMENT_INTENT_SALE);
+//
+//                        Intent intent = new Intent(GearListActivity.this, PaymentActivity.class);
+//
+//                        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+//
+//                        startActivityForResult(intent, 0);
+//                    }
+//                });
 
                 builder.show();
             }
@@ -122,11 +144,12 @@ public class GearListActivity extends Activity {
 //                        Log.d(TAG, "Latch opened, result: " + result);
 //                    }
 //                });
-        Intent intent = new Intent(this, CurrentlyPlaying.class);
-        intent.putExtra(CurrentlyPlaying.LOCATION_EXTRA, gearLocation);
-        intent.putExtra(CurrentlyPlaying.GEAR_EXTRA, gear);
-        startActivity(intent);
         if (resultCode == Activity.RESULT_OK) {
+            Intent intent = new Intent(this, CurrentlyPlaying.class);
+            intent.putExtra(CurrentlyPlaying.LOCATION_EXTRA, gearLocation);
+            intent.putExtra(CurrentlyPlaying.GEAR_EXTRA, gear);
+            startActivity(intent);
+            
             PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
 //            confirm.toJSONObject()
             if (confirm != null) {

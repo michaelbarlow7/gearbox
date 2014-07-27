@@ -2,26 +2,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".LoginActivity">
-
-    <ListView
-        android:id="@+id/componentListView"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </ListView>
+    <TextView
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_bar_height"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:background="@color/gearbox_orange"
+        />
     <TextView
         android:id="@+id/priceDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="22sp"
-        android:text="$2 for 2 hours"
-        android:layout_below="@id/componentListView"
-        android:layout_alignRight="@id/componentListView"
-        android:layout_alignLeft="@id/componentListView"
+        android:padding="10dp"
+        android:text="Kit $2 for 2 hours"
+        android:layout_below="@id/topBar"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
         />
+
+    <ListView
+        android:id="@+id/componentListView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/priceDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </ListView>
+    <TextView
+        android:id="@+id/promptText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Would you like to grab this kit now?"
+        android:textSize="22sp"
+        android:padding="15dp"
+        android:layout_below="@id/componentListView"
+        />
+    <Button
+        android:id="@+id/grabButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
+        android:layout_below="@id/promptText"
+        android:layout_centerHorizontal="true"
+        android:text="Grab it!"
+        android:layout_marginBottom="10dp"
+        />
+
 
 </RelativeLayout>
