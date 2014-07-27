@@ -9,10 +9,10 @@ import com.gearboxer.gearbox.R;
 public enum GearType {
     VOLLEYBALL("Volleyball", R.drawable.volleyball, new Component(R.drawable.volleyball, "2 Volleyballs")),
     TENNIS("Tennis", R.drawable.tennis_ball, new Component(0, "4 tennisballs"), new Component(R.drawable.tennis_racquet, "4 racquets")),
-    SOCCER("Soccer", R.drawable.soccer_ball, new Component(R.drawable.soccer_ball, "1 soccerball")),
+    SOCCER("Soccer", R.drawable.soccer_ball, new Component(R.drawable.soccer_ball, "1 soccerball"), new Component(R.drawable.cone, "4 cones")),
     BASKETBALL("Basketball", R.drawable.basketball, new Component(R.drawable.basketball, "1 basketball")),
     BEACHBALL("Beachball", R.drawable.beach_ball, new Component(R.drawable.beach_ball, "1 beachball")),
-    CRICKET("Cricket", R.drawable.cricket_ball, new Component(R.drawable.cricket_bat, "1 bat"), new Component(R.drawable.cricket_bat, "2 wickets"), new Component(R.drawable.cricket_ball, "1 ball"));
+    CRICKET("Cricket", R.drawable.cricket_ball, new Component(R.drawable.cricket_bat, "1 bat"), new Component(R.drawable.cricket_wicket, "2 wickets"), new Component(R.drawable.cricket_ball, "1 ball"));
     private String name;
     private int iconResource;
     private Component[] components;

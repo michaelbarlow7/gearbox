@@ -133,15 +133,15 @@ public class GearListAdapter extends BaseAdapter {
             case CRICKET: {
                 switch (gear.getQuantity()) {
                     case 0: {
-                        resourceId = R.drawable.gvolley;
+                        resourceId = R.drawable.gcricket;
                         break;
                     }
                     case 1: {
-                        resourceId = R.drawable.yvolley;
+                        resourceId = R.drawable.ycricket;
                         break;
                     }
                     default: {
-                        resourceId = R.drawable.nvolley;
+                        resourceId = R.drawable.ncricket;
                     }
                 }
                 break;
